@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: student-id-card-generator
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: student-db
+          property: connectionString
+
+databases:
+  - name: student-db
+    databaseName: student_data
+    user: student_user
